@@ -28,7 +28,7 @@ class TextcsvConan(ConanFile):
     shared = "-DSTATIC_LIB=OFF" if self.options.shared else "-DSTATIC_LIB=ON"
     tests = "-DBUILD_TESTS=ON" if self.options.buildTests else "-DBUILD_TESTS=ON"
     installPrefix = "-DCMAKE_INSTALL_PREFIX=" + str(self.package_folder) #install into the package folder
-    cmakeOptions = shared + " " + tests + " " + installPrefix + " -DUSE_QT4=True"
+    cmakeOptions = shared + " " + tests + " " + installPrefix
 
     self.run('cmake .. %s %s' % (cmake.command_line, cmakeOptions))
     self.run("cmake --build . %s -- -j%s" % (cmake.build_config, str(cpu_count())))
